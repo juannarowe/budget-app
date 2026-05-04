@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ClientForm from '../components/ClientForm'
 import type { Service } from '../types/budget.types'
 import ServiceList from '../components/ServiceList'
 
@@ -12,6 +13,10 @@ export default function HomePage() {
                 onTotalChange={setTotal}
                 onServicesChange={setSelectedServices}
             />
+            <ClientForm
+                total={total}
+                onSubmit={(client) => console.log(client)}
+            />    
             <p>Total selecionado: {total} €</p>
         </main>
     )
