@@ -31,6 +31,7 @@ Aplicación web para generar y gestionar presupuestos de servicios digitales, de
 | Vite | Bundler y servidor de desarrollo |
 | jsPDF | Generación de PDFs en el navegador |
 | nanoid | Generación de IDs únicos |
+| Jest + ts-jest | Framework de testing |
 
 ---
 
@@ -52,9 +53,16 @@ src/
 ├── hooks/            # Lógica React reutilizable
 │   └── useBudgets.ts
 ├── services/         # Lógica pura sin React
-│   └── budgetService.ts
+│   ├── budgetService.ts
+│   └── validateClient.ts
 ├── types/            # Definiciones de tipos TypeScript
 │   └── budget.types.ts
+├── __tests__/        # Tests unitarios
+│   ├── budgetService.test.ts
+│   ├── useBudgets.test.ts
+│   └── validateClient.test.ts
+├── __mocks__/        # Mocks para testing
+│   └── nanoid.ts
 └── index.css
 ```
 
@@ -69,6 +77,50 @@ src/
 **Tipado:** se definen tres interfaces principales — `Service`, `Client` y `Budget` — que garantizan consistencia en toda la aplicación.
 
 **Cálculo de precios:** la función `calculateTotal` en `budgetService.ts` es lógica pura, sin dependencias de React, fácilmente testeable.
+
+---
+
+## Tests
+
+El proyecto incluye **24 tests unitarios** organizados en 3 suites, escritos con **Jest + ts-jest** siguiendo la metodología **BDD** con escenarios en formato **Gherkin** (Given / When / Then).
+
+### Ejecutar los tests
+
+```bash
+# Ejecutar todos los tests
+npm test
+
+# Ejecutar con informe de cobertura
+npm run test:coverage
+```
+
+### Suites de tests
+
+| Archivo | Función testada | Tests |
+|---|---|---|
+| `budgetService.test.ts` | `calculateTotal`, `buildBudget` | 11 |
+| `useBudgets.test.ts` | Persistencia en `localStorage` | 6 |
+| `validateClient.test.ts` | `validateClient` | 7 |
+
+### Enfoque BDD — Gherkin
+
+Cada test documenta el comportamiento esperado con comentarios Given / When / Then antes del código:
+
+```ts
+// Scenario: Web con 3 páginas y 2 idiomas
+// Given el usuario selecciona Web con 3 páginas y 2 idiomas
+// When se calcula el total
+// Then el resultado debe ser 650 (500 + (3+2)*30)
+it('devuelve 650 para Web con 3 páginas y 2 idiomas', () => {
+  expect(calculateTotal([WEB_3_2])).toBe(650)
+})
+```
+
+### Decisiones de diseño
+
+- **Lógica pura extraída:** `validateClient` se extrajo de `ClientForm.tsx` a `services/validateClient.ts` para poder testarla sin dependencias de React.
+- **Mock de nanoid:** `nanoid` genera IDs aleatorios en producción. En los tests se sustituye por un mock determinista (`mock-id-1`, `mock-id-2`...) para que los resultados sean predecibles.
+- **Mock de localStorage:** `localStorage` no existe en el entorno Node.js de Jest. Se simula con un objeto en memoria que replica la API (`getItem`, `setItem`, `clear`).
 
 ---
 
