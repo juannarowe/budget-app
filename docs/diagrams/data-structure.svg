@@ -1,0 +1,47 @@
+<svg width="680" height="540" viewBox="0 0 680 540" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <rect width="680" height="540" fill="#ffffff"/>
+  <text x="340" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a1a">Estructura de dades — localStorage</text>
+
+  <!-- Outer Budget object -->
+  <rect x="40" y="44" width="600" height="456" rx="16" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="64" y="70" font-size="14" font-weight="600" fill="#085041">Budget object</text>
+  <text x="64" y="88" font-size="11" fill="#0F6E56">un registre guardat a localStorage</text>
+
+  <!-- Identificació -->
+  <rect x="64" y="100" width="248" height="110" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="88" y="122" font-size="13" font-weight="500" fill="#26215C">Identificació</text>
+  <text x="88" y="142" font-size="11" fill="#3C3489">id: string (uuid)</text>
+  <text x="88" y="160" font-size="11" fill="#3C3489">date: string (ISO 8601)</text>
+  <text x="88" y="178" font-size="11" fill="#3C3489">url: string (ruta única)</text>
+  <text x="88" y="196" font-size="11" fill="#3C3489">total: number (€)</text>
+
+  <!-- Client -->
+  <rect x="368" y="100" width="248" height="110" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="392" y="122" font-size="13" font-weight="500" fill="#26215C">Client</text>
+  <text x="392" y="142" font-size="11" fill="#3C3489">name: string</text>
+  <text x="392" y="160" font-size="11" fill="#3C3489">email: string</text>
+  <text x="392" y="178" font-size="11" fill="#3C3489">phone: string</text>
+
+  <!-- Services -->
+  <rect x="64" y="230" width="552" height="140" rx="10" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="88" y="252" font-size="13" font-weight="500" fill="#4A1B0C">Services  [ ]  array</text>
+
+  <rect x="88" y="268" width="220" height="80" rx="6" fill="none" stroke="#993C1D" stroke-width="0.5" stroke-dasharray="4 2"/>
+  <text x="108" y="288" font-size="11" fill="#712B13">SEO / Ads</text>
+  <text x="108" y="306" font-size="11" fill="#993C1D">id: "seo" | "ads"</text>
+  <text x="108" y="324" font-size="11" fill="#993C1D">name: string</text>
+  <text x="108" y="342" font-size="11" fill="#993C1D">price: number</text>
+
+  <rect x="328" y="268" width="268" height="80" rx="6" fill="none" stroke="#993C1D" stroke-width="0.5" stroke-dasharray="4 2"/>
+  <text x="348" y="288" font-size="11" fill="#712B13">Web (si seleccionat)</text>
+  <text x="348" y="306" font-size="11" fill="#993C1D">id: "web"</text>
+  <text x="348" y="324" font-size="11" fill="#993C1D">pages: number  |  langs: number</text>
+  <text x="348" y="342" font-size="11" fill="#993C1D">price: number</text>
+
+  <!-- localStorage key -->
+  <rect x="64" y="390" width="552" height="88" rx="10" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+  <text x="88" y="412" font-size="13" font-weight="500" fill="#2C2C2A">localStorage</text>
+  <text x="88" y="432" font-size="11" fill="#5F5E5A">key: "budgets"</text>
+  <text x="88" y="452" font-size="11" fill="#5F5E5A">value: JSON.stringify( Budget[] )  →  array de tots els pressupostos</text>
+  <text x="88" y="470" font-size="11" fill="#5F5E5A">lectura: JSON.parse( localStorage.getItem("budgets") ) ?? []</text>
+</svg>

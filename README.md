@@ -68,6 +68,25 @@ src/
 
 ---
 
+## Diagramas
+
+### User Flow
+![User Flow](docs/diagrams/user-flow.svg)
+
+### Arquitectura de componentes
+![Component Architecture](docs/diagrams/component-architecture.svg)
+
+### Estructura de datos
+![Data Structure](docs/diagrams/data-structure.svg)
+
+### Flux localStorage
+![LocalStorage Flow](docs/diagrams/localstorage-flow.svg)
+
+### Inicialización SPA
+![SPA Init](docs/diagrams/spa-initialization.svg)
+
+---
+
 ## Arquitectura y decisiones técnicas
 
 **Flujo de datos:** los datos fluyen hacia abajo mediante props y los eventos hacia arriba mediante callbacks (patrón *lifting state up*).

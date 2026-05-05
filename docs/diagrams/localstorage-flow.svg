@@ -1,0 +1,74 @@
+<svg width="680" height="380" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, sans-serif">
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect width="680" height="380" fill="#ffffff"/>
+  <text x="340" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a1a">Flux de dades — localStorage</text>
+
+  <!-- AL GUARDAR label -->
+  <text x="40" y="58" font-size="11" fill="#5F5E5A">Al guardar</text>
+
+  <!-- useState -->
+  <rect x="40" y="66" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="105" y="89" text-anchor="middle" font-size="13" font-weight="500" fill="#085041">useState</text>
+  <text x="105" y="108" text-anchor="middle" font-size="11" fill="#0F6E56">services, client</text>
+  <line x1="170" y1="94" x2="200" y2="94" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <!-- buildBudget -->
+  <rect x="200" y="66" width="130" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="265" y="89" text-anchor="middle" font-size="13" font-weight="500" fill="#085041">buildBudget()</text>
+  <text x="265" y="108" text-anchor="middle" font-size="11" fill="#0F6E56">crea l'objecte</text>
+  <line x1="330" y1="94" x2="360" y2="94" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <!-- JSON.stringify -->
+  <rect x="360" y="66" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+  <text x="430" y="89" text-anchor="middle" font-size="13" font-weight="500" fill="#085041">JSON.stringify</text>
+  <text x="430" y="108" text-anchor="middle" font-size="11" fill="#0F6E56">objecte → string</text>
+  <line x1="500" y1="94" x2="540" y2="94" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#ag)"/>
+
+  <!-- localStorage box -->
+  <rect x="540" y="56" width="100" height="170" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+  <text x="590" y="84" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A">Local</text>
+  <text x="590" y="102" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A">Storage</text>
+
+  <!-- Persiste label -->
+  <text x="595" y="155" font-size="10" fill="#888780">persiste</text>
+  <line x1="590" y1="130" x2="590" y2="200" stroke="#888780" stroke-width="0.5" stroke-dasharray="3 2"/>
+
+  <!-- AL CARREGAR label -->
+  <text x="40" y="196" font-size="11" fill="#5F5E5A">Al carregar la app</text>
+
+  <!-- useEffect -->
+  <rect x="40" y="206" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="105" y="229" text-anchor="middle" font-size="13" font-weight="500" fill="#26215C">useEffect</text>
+  <text x="105" y="248" text-anchor="middle" font-size="11" fill="#3C3489">al muntar</text>
+  <line x1="170" y1="234" x2="200" y2="234" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ap)"/>
+
+  <!-- JSON.parse -->
+  <rect x="200" y="206" width="130" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="265" y="229" text-anchor="middle" font-size="13" font-weight="500" fill="#26215C">JSON.parse</text>
+  <text x="265" y="248" text-anchor="middle" font-size="11" fill="#3C3489">string → array</text>
+  <line x1="330" y1="234" x2="360" y2="234" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ap)"/>
+
+  <!-- setBudgets -->
+  <rect x="360" y="206" width="140" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="430" y="229" text-anchor="middle" font-size="13" font-weight="500" fill="#26215C">setBudgets()</text>
+  <text x="430" y="248" text-anchor="middle" font-size="11" fill="#3C3489">actualitza estat</text>
+  <line x1="500" y1="234" x2="540" y2="234" stroke="#534AB7" stroke-width="1.5" marker-end="url(#ap)"/>
+
+  <!-- UI box -->
+  <rect x="540" y="206" width="100" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="590" y="229" text-anchor="middle" font-size="13" font-weight="500" fill="#26215C">UI</text>
+  <text x="590" y="248" text-anchor="middle" font-size="11" fill="#3C3489">historial</text>
+
+  <!-- Code example -->
+  <rect x="40" y="300" width="600" height="56" rx="8" fill="#f9fafb" stroke="#e5e7eb" stroke-width="0.5"/>
+  <text x="64" y="320" font-size="11" fill="#5F5E5A" font-family="monospace">// Guardar</text>
+  <text x="64" y="338" font-size="11" fill="#5F5E5A" font-family="monospace">const prev = JSON.parse(localStorage.getItem('budgets') ?? '[]')</text>
+  <text x="64" y="356" font-size="11" fill="#5F5E5A" font-family="monospace">localStorage.setItem('budgets', JSON.stringify([...prev, newBudget]))</text>
+</svg>
