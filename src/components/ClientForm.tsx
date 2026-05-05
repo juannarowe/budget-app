@@ -1,49 +1,109 @@
 import { useState } from 'react'
-import type { SyntheticEvent, ChangeEvent } from 'react'
 import type { Client } from '../types/budget.types'
 
 interface ClientFormProps {
-    total: number
-    onSubmit(client: Client): void
+  total: number
+  onSubmit(client: Client): void
+}
+
+interface FormState {
+  name: string
+  email: string
+  phone: string
+}
+
+interface FormErrors {
+  name?: string
+  email?: string
+  phone?: string
+}
+
+const EMPTY: FormState = { name: '', email: '', phone: '' }
+
+function validate(fields: FormState): FormErrors {
+  const errors: FormErrors = {}
+  if (!fields.name.trim()) errors.name = 'El nombre es obligatorio'
+  if (!fields.email.trim()) errors.email = 'El email es obligatorio'
+  else if (!fields.email.includes('@')) errors.email = 'El email no es válido'
+  if (!fields.phone.trim()) errors.phone = 'El teléfono es obligatorio'
+  return errors
 }
 
 export default function ClientForm({ total, onSubmit }: ClientFormProps) {
-    const [client, setClient] = useState<Client>({ name: '', email: '', phone: '' })
+  const [fields, setFields] = useState<FormState>(EMPTY)
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [submitted, setSubmitted] = useState(false)
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const { name, value } = e.target
-        setClient(prev => ({ ...prev, [name]: value}))
-    }
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target
+    const updated = { ...fields, [name]: value }
+    setFields(updated)
+    if (submitted) setErrors(validate(updated))
+  }
 
-    function handleSubmit(e: React.SyntheticEvent) {
-        e.preventDefault()
-        onSubmit(client)
-    }
+  function handleSubmit(e: React.SyntheticEvent) {
+    e.preventDefault()
+    setSubmitted(true)
+    const errs = validate(fields)
+    setErrors(errs)
+    if (Object.keys(errs).length > 0) return
+    onSubmit({ name: fields.name, email: fields.email, phone: fields.phone })
+    setFields(EMPTY)
+    setErrors({})
+    setSubmitted(false)
+  }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-                name="name"
-                value={client.name}
-                onChange={handleChange}
-                placeholder="Nombre"
-            />
-            <input
-                name="email"
-                value={client.email}
-                onChange={handleChange}
-                placeholder="Email"
-            />
-            <input
-                name="phone"
-                value={client.phone}
-                onChange={handleChange}
-                placeholder="Teléfono"
-            />
-            <p>Total: {total} €</p>
-            <button type="submit" disabled={total === 0}>
-                Solicitar presupuesto
-            </button>
-        </form>
-    )
+  return (
+    <form className="client-form" onSubmit={handleSubmit} noValidate>
+      <h3 className="client-form__heading">Solicitar presupuesto</h3>
+
+      <div className="client-form__row">
+        <div className="form-field">
+          <label className="sr-only" htmlFor="name">Nombre</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Nombre"
+            value={fields.name}
+            onChange={handleChange}
+            aria-describedby={errors.name ? 'name-error' : undefined}
+          />
+          {errors.name && <span id="name-error" className="form-error">{errors.name}</span>}
+        </div>
+
+        <div className="form-field">
+          <label className="sr-only" htmlFor="phone">Teléfono</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="Teléfono"
+            value={fields.phone}
+            onChange={handleChange}
+            aria-describedby={errors.phone ? 'phone-error' : undefined}
+          />
+          {errors.phone && <span id="phone-error" className="form-error">{errors.phone}</span>}
+        </div>
+
+        <div className="form-field">
+          <label className="sr-only" htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={fields.email}
+            onChange={handleChange}
+            aria-describedby={errors.email ? 'email-error' : undefined}
+          />
+          {errors.email && <span id="email-error" className="form-error">{errors.email}</span>}
+        </div>
+
+        <button type="submit" className="btn-submit" disabled={total === 0}>
+          Solicitar presupuesto →
+        </button>
+      </div>
+    </form>
+  )
 }

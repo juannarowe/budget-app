@@ -25,9 +25,15 @@ export function useBudgets() {
     setBudgets(updated)
   }
 
+  function deleteBudget(id: string): void {
+    const updated = budgets.filter(b => b.id !== id)
+    saveBudgets(updated)
+    setBudgets(updated)
+  }
+
   function getBudgetById(id: string): Budget | undefined {
     return budgets.find(b => b.id === id)
   }
 
-  return { budgets, addBudget, getBudgetById }
+  return { budgets, addBudget, deleteBudget, getBudgetById }
 }

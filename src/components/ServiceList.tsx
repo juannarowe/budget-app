@@ -59,7 +59,7 @@ export default function ServiceList({ onTotalChange, onServicesChange }: Service
     const total = calculateTotal(selectedServices)
 
     return (
-        <div>
+        <div className="service-list">
             {CATALOG.map(service => (
                 <ServiceCard
                     key={service.id}
@@ -72,7 +72,10 @@ export default function ServiceList({ onTotalChange, onServicesChange }: Service
                     onWebChange={handleWebChange}
                 />
             ))}
-            <p>Total: {total} €</p>
+            <div className="service-list__total">
+                <span className="total-label">Precio presupuestado:</span>
+                <span className="total-amount">{total} €</span>
+            </div>
         </div>
     )
 }
