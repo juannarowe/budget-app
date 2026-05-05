@@ -7,7 +7,27 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.test.json"
+        }
+      ]
+    },
+    "moduleNameMapper": {
+      "^nanoid$": "<rootDir>/src/__mocks__/nanoid.ts"
+    }
   },
   "dependencies": {
     "jspdf": "^4.2.1",
@@ -18,6 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -26,6 +47,8 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
     "vite": "^8.0.10"

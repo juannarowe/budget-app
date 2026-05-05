@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import type { Client } from '../types/budget.types'
+import { validateClient } from '../services/validateClient'
+import type { FormErrors } from '../services/validateClient'
 
 interface ClientFormProps {
   total: number
@@ -12,22 +14,7 @@ interface FormState {
   phone: string
 }
 
-interface FormErrors {
-  name?: string
-  email?: string
-  phone?: string
-}
-
 const EMPTY: FormState = { name: '', email: '', phone: '' }
-
-function validate(fields: FormState): FormErrors {
-  const errors: FormErrors = {}
-  if (!fields.name.trim()) errors.name = 'El nombre es obligatorio'
-  if (!fields.email.trim()) errors.email = 'El email es obligatorio'
-  else if (!fields.email.includes('@')) errors.email = 'El email no es válido'
-  if (!fields.phone.trim()) errors.phone = 'El teléfono es obligatorio'
-  return errors
-}
 
 export default function ClientForm({ total, onSubmit }: ClientFormProps) {
   const [fields, setFields] = useState<FormState>(EMPTY)
@@ -38,13 +25,13 @@ export default function ClientForm({ total, onSubmit }: ClientFormProps) {
     const { name, value } = e.target
     const updated = { ...fields, [name]: value }
     setFields(updated)
-    if (submitted) setErrors(validate(updated))
+    if (submitted) setErrors(validateClient(updated))
   }
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
     setSubmitted(true)
-    const errs = validate(fields)
+    const errs = validateClient(fields)
     setErrors(errs)
     if (Object.keys(errs).length > 0) return
     onSubmit({ name: fields.name, email: fields.email, phone: fields.phone })
