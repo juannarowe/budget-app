@@ -1,31 +1,20 @@
-import { useParams, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useBudgets } from '../hooks/useBudgets'
+import BudgetDetail from '../components/BudgetDetail'
 
 export default function BudgetDetailPage() {
   const { id } = useParams<{ id: string }>()
-  const { getBudgetById } = useBudgets()
-  const budget = getBudgetById(id ?? '')
+  const { budgets } = useBudgets()
+  const budget = budgets.find(b => b.id === id)
 
   if (!budget) {
     return (
-      <div>
+      <div className="not-found">
         <p>Presupuesto no encontrado.</p>
-        <Link to="/">← Volver</Link>
+        <Link to="/">← Volver al inicio</Link>
       </div>
     )
   }
 
-  return (
-    <div>
-      <p>{budget.client.name}</p>
-      <p>{budget.client.email}</p>
-      <p>{budget.client.phone}</p>
-      <ul>
-        {budget.services.map(service => (
-          <li key={service.id}>{service.name}</li>
-        ))}
-      </ul>
-      <p>Total: {budget.total} €</p>
-    </div>
-  )
+  return <BudgetDetail budget={budget} />
 }
